@@ -110,8 +110,27 @@ class Config:
 now_dir=os.getcwd()
 sys.path.append(now_dir)
 sys.path.append(os.path.join(now_dir,"Retrieval-based-Voice-Conversion-WebUI"))
-from vc_infer_pipeline import VC
-from lib.infer_pack.models import SynthesizerTrnMs256NSFsid, SynthesizerTrnMs256NSFsid_nono, SynthesizerTrnMs768NSFsid, SynthesizerTrnMs768NSFsid_nono
+# Define the path to the directory containing the VC module
+vc_module_dir = '/home/pwalch/projects/Files/YouTubeVideoTool/bark-with-voice-clone/Retrieval-based-Voice-Conversion-WebUI/infer/modules'
+
+# Add the VC module directory to sys.path
+sys.path.append(vc_module_dir)
+
+# Import the VC module
+from vc.modules import VC  # Assuming VC is in modules.py within the vc directory
+
+# Define the path to the directory containing the models module
+models_dir = '/home/pwalch/projects/Files/YouTubeVideoTool/bark-with-voice-clone/Retrieval-based-Voice-Conversion-WebUI/infer/lib'
+
+# Add the models directory to sys.path
+sys.path.append(models_dir)
+
+# Import the required modules from models
+from infer_pack.models import (SynthesizerTrnMs256NSFsid, 
+                               SynthesizerTrnMs256NSFsid_nono, 
+                               SynthesizerTrnMs768NSFsid, 
+                               SynthesizerTrnMs768NSFsid_nono)
+
 from fairseq import checkpoint_utils
 from scipy.io import wavfile
 
